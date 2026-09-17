@@ -20,8 +20,8 @@
 # - Implement the remaining functionality
 
 KB = 1024
-MB = 1048576
-GB = 1073741824
+MB = (KB * 1024)
+GB = (MB * 1024)
 
 num_entries = int(input("Please enter the number of entries per second: "))
 entry_size = int(input("Please enter the average number of bytes per entry: "))
