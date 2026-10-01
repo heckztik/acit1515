@@ -6,15 +6,16 @@ dotw = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Fri
 
 #  leap day occurs in each year that is a multiple of 4, except for years evenly divisible by 100 but not by 400
 def isLeapYear(year):
-    return int(year) % 4 == 0 and (int(year) % 100 != 0 or int(year) % 400 == 0)
+    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
 
 def getDayOfTheWeek(year, month, day):
+    year, month, day = int(year), int(month), int(day)
 
-    shortenedyear = int(year) % 100
+    shortenedyear = year % 100
     howmany12s = shortenedyear // 12
     remainder = shortenedyear % 12
     howmany4s = remainder // 4
-    century = int(year) // 100
+    century = year // 100
 
     if century in specialoffsets:
         monthcodewoffset = specialoffsets[century] + monthcode[int(month) - 1]
@@ -41,5 +42,5 @@ def runDayOfTheWeek():
     if not monthinput.isnumeric():
         print(f"{monthinput} {day}, {year}")
     else:
-        print(f"{monthinput}/{day}/{year}")
+        print(f"{month}/{day}/{year}")
     print(f"Is a {getDayOfTheWeek(year, month, day)}.")
