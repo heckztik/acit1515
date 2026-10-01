@@ -39,17 +39,15 @@ def getDayOfTheWeek(year, month, day):
 def runDayOfTheWeek():
     print("What day is on this date?")
     year = input("Year: ")
-
     monthinput = input("Month: ")
-    ismonthname = len(monthinput) > 2
-    if ismonthname:
-        month = monthDict[monthinput]
-    else:
-        month = int(monthinput)
-        # this is terrible
     day = input("Day: ")
 
-    if ismonthname:
+    if monthinput.isnumeric():
+        month = int(monthinput)
+    else:
+        month = monthDict[monthinput]      
+
+    if monthinput.isnumeric():
         print(f"{monthinput} {day}, {year}")
     else:
         print(f"{monthinput}/{day}/{year}")
