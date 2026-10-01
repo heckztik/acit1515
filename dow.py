@@ -43,7 +43,7 @@ def getDayOfTheWeek(year, month, day):
     else:
         monthcodewoffset = monthcode[month - 1]
 
-    if lybool:
+    if lybool and (month == 1 or month == 2):
         monthcodewoffset = monthcodewoffset - 1
 
     dotwIndex = (howmany12s + remainder + howmany4s + int(day) + monthcodewoffset) % 7

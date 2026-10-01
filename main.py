@@ -7,16 +7,15 @@ def getDayOfTheWeekForUserDate():
     year = int(input("Year: "))
     monthinput = (input("Month: ").capitalize())
     day = int(input("Day: "))
-    
     if monthinput.isnumeric():
         month = int(monthinput)
     else:
         month = monthDict[monthinput]
 
     if monthinput.isnumeric():
-        print(f"{monthinput}/{day}/{year} is a {dow.getDayOfTheWeek(year, month, day)}")
+        print(f"{monthinput}/{day}/{year} is a {dow.getDayOfTheWeek(year, month, day)}.")
     else:
-        print(f"{monthinput} {day}, {year} is a {dow.getDayOfTheWeek(year, month, day)}")
+        print(f"{monthinput} {day}, {year} is a {dow.getDayOfTheWeek(year, month, day)}.")
 
 
 while True:
