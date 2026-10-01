@@ -1,7 +1,5 @@
 import dow
 
-monthDict = {"January":1, "February":2, "March":3, "April":4, "May":5, "June":6, "July":7, "August":8, "September":9, "October":10, "November":11, "December":12}
-
 def getDayOfTheWeekForUserDate():
     year = int(input("Year: "))
     monthinput = (input("Month: ").capitalize())
@@ -9,8 +7,7 @@ def getDayOfTheWeekForUserDate():
     if monthinput.isnumeric():
         month = int(monthinput)
     else:
-        month = monthDict[monthinput]
-
+        month = dow.monthDict[monthinput]
     if monthinput.isnumeric():
         print(f"{monthinput}/{day}/{year} is a {dow.getDayOfTheWeek(year, month, day)}.")
     else:
