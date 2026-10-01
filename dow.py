@@ -47,7 +47,7 @@ def runDayOfTheWeek():
     else:
         month = monthDict[monthinput]      
 
-    if monthinput.isnumeric():
+    if not monthinput.isnumeric():
         print(f"{monthinput} {day}, {year}")
     else:
         print(f"{monthinput}/{day}/{year}")
