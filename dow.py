@@ -8,7 +8,7 @@ dotw = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Fri
 def isLeapYear(year):
     return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
 
-def getDayOfTheWeek(year, month, day):
+def getDayOfTheWeek(year, month, day, lybool):
     year, month, day = int(year), int(month), int(day)
 
     shortenedyear = year % 100
@@ -18,12 +18,15 @@ def getDayOfTheWeek(year, month, day):
     century = year // 100
 
     if century in specialoffsets:
-        monthcodewoffset = specialoffsets[century] + monthcode[int(month) - 1]
+        monthcodewoffset = specialoffsets[century] + monthcode[month - 1]
     else:
-        monthcodewoffset = monthcode[int(month) - 1]
+        monthcodewoffset = monthcode[month - 1]
 
-    if isLeapYear(year) and (month == 1 or month == 2):
+    if lybool:
         monthcodewoffset = monthcodewoffset - 1
+
+    # if isLeapYear(year) and (month == 1 or month == 2):
+    #     monthcodewoffset = monthcodewoffset - 1
 
     dotwIndex = (howmany12s + remainder + howmany4s + int(day) + monthcodewoffset) % 7
     return dotw[dotwIndex]
@@ -37,10 +40,10 @@ def runDayOfTheWeek():
     if monthinput.isnumeric():
         month = int(monthinput)
     else:
-        month = monthDict[monthinput]      
+        month = monthDict[monthinput]    
 
     if not monthinput.isnumeric():
         print(f"{monthinput} {day}, {year}")
     else:
         print(f"{month}/{day}/{year}")
-    print(f"Is a {getDayOfTheWeek(year, month, day)}.")
+    print(f"Is a {getDayOfTheWeek(year, month, day, isLeapYear(year))}.")
