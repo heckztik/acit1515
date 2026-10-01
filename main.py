@@ -2,7 +2,6 @@ import dow
 
 monthDict = {"January":1, "February":2, "March":3, "April":4, "May":5, "June":6, "July":7, "August":8, "September":9, "October":10, "November":11, "December":12}
 
-
 def getDayOfTheWeekForUserDate():
     year = int(input("Year: "))
     monthinput = (input("Month: ").capitalize())
@@ -16,7 +15,6 @@ def getDayOfTheWeekForUserDate():
         print(f"{monthinput}/{day}/{year} is a {dow.getDayOfTheWeek(year, month, day)}.")
     else:
         print(f"{monthinput} {day}, {year} is a {dow.getDayOfTheWeek(year, month, day)}.")
-
 
 while True:
     print("Would you like to find the weekday on a specific day or would you like to print a calendar?")

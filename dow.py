@@ -7,7 +7,7 @@ dayslyList = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 #  leap day occurs in each year that is a multiple of 4, except for years evenly divisible by 100 but not by 400
 def isLeapYear(year):
-    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
+    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)   
 
 def makeCalendar():
     yearinput = input("Which year would you like to print? (No entry defaults to 2026): ")
@@ -48,20 +48,3 @@ def getDayOfTheWeek(year, month, day):
 
     dotwIndex = (howmany12s + remainder + howmany4s + int(day) + monthcodewoffset) % 7
     return dotw[dotwIndex]
-
-# def runDayOfTheWeek():
-#     print("What day is on this date?")
-#     year = int(input("Year: "))
-#     monthinput = input("Month: ").capitalize()
-#     day = int(input("Day: "))
-
-#     if monthinput.isnumeric():
-#         month = int(monthinput)
-#     else:
-#         month = monthDict[monthinput]    
-
-#     if not monthinput.isnumeric():
-#         print(f"{monthinput} {day}, {year}")
-#     else:
-#         print(f"{month}/{day}/{year}")
-#     print(f"Is a {getDayOfTheWeek(year, month, day, isLeapYear(year))}.")
