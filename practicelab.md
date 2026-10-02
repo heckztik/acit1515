@@ -106,7 +106,7 @@ securityQuestions = [
 ]
 auth = True
 for i in range(len(securityQuestions)):
-	if input(securityQuestions[i]["question"]) != securityQuestions[i]["expectedAnswer"]:
+	if input(securityQuestions[i]["question"] + " ") != securityQuestions[i]["expectedAnswer"]:
 		print("Invalid response, please try again later")
 		auth = False
 		break
@@ -125,7 +125,13 @@ if auth == True:
 ```py
 login = {"username":"sarah123", "password":"securepassword"}
 
-input(
+for attempts in range(3):
+    if input(f"Enter password for {login["username"]}: ") == login["password"]:
+        print("You may access your account")
+    elif attempts == 2:
+        print("You have tried too many times.")
+    else:
+        print("Incorrect password. Please try again.")
 ```
 
 ### Uppercase Odds
@@ -146,8 +152,18 @@ Your function should return:
 
 (Note: we are starting to count at 0)
 
-```python
-# your code here
+```py
+def uppercaseOddWords(userinput):
+    newstring = ""
+    words = userinput.split(" ")
+    for i in range(len(words)):
+        if i % 2:
+            newstring = newstring + words[i].upper() + " "
+        else:
+            newstring = newstring + words[i] + " "
+    return newstring.strip()
+
+print(uppercaseOddWords(input("Input a sentence to convert every other word to uppercase: ")))
 ```
 
 ### upperCamelCase
