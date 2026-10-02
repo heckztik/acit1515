@@ -173,7 +173,12 @@ You will receive a normal string of words separated with spaces as the input. Yo
 Your Code:
 
 ```python
-# your code here
+def upperCamelCase(userinput):
+    newstring = ""
+    words = userinput.split()
+    for i in range(len(words)):
+        newstring = newstring + words[i][0].upper() + words[i][1:]
+    return newstring
 
 upperCamelCase("fur pillows are hard to actually sleep on")
 ```
