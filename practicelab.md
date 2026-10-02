@@ -324,7 +324,15 @@ artists = [
   },
 ]
 
-# your code here
+def artistsByYear(artists):
+    byyearDict = {}
+    for i, song in enumerate(artists):
+        if song["year"] not in byyearDict:
+            byyearDict[str(song["year"])] = []
+            byyearDict[str(song["year"])].append(song)
+        else:
+            byyearDict[str(song["year"])].append(song)
+    return byyearDict
 
 print(artistsByYear(artists))
 ```
