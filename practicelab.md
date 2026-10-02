@@ -9,7 +9,11 @@ Write a function called `longerWord(first, second)` that returns whichever word 
 If both words have the same length, return the first word.
 
 ```python
-# your code here
+def longerWord(first, second):
+	if len(second) > len(first):
+		print(second)
+	else:
+		print(first)
 
 longerWord("cat", "elephant")  # returns "elephant"
 longerWord("tiger", "bear")    # returns "tiger"
