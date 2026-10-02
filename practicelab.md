@@ -37,10 +37,12 @@ person = { "name": "Sarah", "height": "6 feet", "age": 22 }
 1. "name", "height", "age"
 2. person["age"]
 3. person["hairColor"] = "black"
-4. person["hairColor"] = "brown"
-5. del person[
-6. 
-7. 
+4. person.update["hairColor"] = "brown"
+5. del person["height"]
+6. if eyeColor not in person:
+	print("Missing Key")
+7. for i in person:
+	print(i, person[i])
 
 ```
 
@@ -51,7 +53,12 @@ Write a function called `countLongWords(words, minimumLength)` that counts how m
 An empty list should return `0`.
 
 ```python
-# your code here
+def countLongWords(words, minimumLength):
+	for i in words:
+		if len(words) == 0:
+			print("0")
+		else len(words[i]) >= minimumLength:
+			print(len(words[i]))
 
 countLongWords(["cat", "tiger", "elephant", "dog"], 5)
 # returns 2
@@ -65,7 +72,12 @@ countLongWords(["a", "to", "and"], 2)
 Write a function called `removeRepeats(items)` that returns a new list containing each item only once. Keep the first occurrence of each item and preserve the original order. Solve this using lists without using a set (if you don’t know what set is, that’s fine).
 
 ```python
-# your code here
+def removeRepeats(items):
+	slimList = []
+	for i in items:
+		if items[i] not in slimList:
+		slimList.append(items[i])
+	print(slimList)
 
 removeRepeats(["apple", "banana", "apple", "pear", "banana"])
 # returns ["apple", "banana", "pear"]
@@ -78,16 +90,28 @@ removeRepeats([3, 3, 1, 2, 1])
 
 1. Create a list called `securityQuestions`. Every element (item) in `securityQuestions` will be a dictionary with two keys: `question` and `expectedAnswer`.
 2. Fill the `securityQuestions` list with at least three of these dictionaries. Example: one dictionary could be:
-    
+
     `{ "question": "What was your first pet's name?", "expectedAnswer": "coco" }`
-    
 3. Write code that goes through each of the security questions in your list doing the following:
+
 - Use  `input`  to ask the user each question in the securityQuestions list.
 - Check whether the user response matches the expected answer. If the answer does match, go ahead and ask the next question, but if the answer does not match, stop asking the user questions and show a message saying: "Invalid response, please try again later".
 - If the user successfully answers all the questions, print: "Success. You may now access your account".
 
 ```python
-# your code here
+securityQuestions = [
+{"question":"What was your first pet's name?", "expectedAnswer":"Coco"},
+{"question":"What was the street you grew up on?", "expectedAnswer":"Main Street"},
+{"question":"What is your Mother's maiden name?", "expectedAnswer":"Collins"},
+]
+auth = True
+for i in range(len(securityQuestions)):
+	if input(securityQuestions[i]["question"]) != securityQuestions[i]["expectedAnswer"]:
+		print("Invalid response, please try again later")
+		auth = False
+		break
+if auth == True:
+	print("Success. You may now access your account")
 ```
 
 ### Login
@@ -98,8 +122,10 @@ removeRepeats([3, 3, 1, 2, 1])
 4. If the passwords do not match, make the user retry entering their password. You must keep showing them this message until they enter a correct password.
 5. Now that you’ve gotten that working, I want you to modify your code to give the user **only three chances** to enter the correct password. If they fail to enter a correct password after 3 tries, you must exit the program, saying to the user: "You have tried too many times.". The solution you paste below should be the version that gives the user only three chances.
 
-```python
-# your code here
+```py
+login = {"username":"sarah123", "password":"securepassword"}
+
+input(
 ```
 
 ### Uppercase Odds
