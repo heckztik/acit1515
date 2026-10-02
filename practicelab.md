@@ -222,7 +222,15 @@ then the output would be:
 Your code:
 
 ```python
-# your code here
+def countWords(inputs):
+    wordcountDict = {}
+    words = inputs.split()
+    for i in range(len(words)):
+        if words[i] not in wordcountDict:
+            wordcountDict[words[i]] = 1
+        else: wordcountDict[words[i]] = wordcountDict[words[i]] + 1
+    return wordcountDict
+
 
 inputs = "buy it use it break it fix it trash it change it mail upgrade it"
 output = countWords(inputs)
