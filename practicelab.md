@@ -228,7 +228,8 @@ def countWords(inputs):
     for i in range(len(words)):
         if words[i] not in wordcountDict:
             wordcountDict[words[i]] = 1
-        else: wordcountDict[words[i]] = wordcountDict[words[i]] + 1
+        else: 
+						wordcountDict[words[i]] = wordcountDict[words[i]] + 1
     return wordcountDict
 
 
@@ -260,7 +261,13 @@ inputs = [
   "it",
 ]
 
-# your code here
+def wordPosition(inputs):
+    positionDict = {}
+    for i in range(len(inputs)):
+        if inputs[i] not in positionDict:
+            positionDict[inputs[i]] = []
+        positionDict[inputs[i]].append(i)
+    return positionDict
 
 output = wordPosition(inputs)
 print(output)
