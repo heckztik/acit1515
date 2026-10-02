@@ -41,9 +41,10 @@ person = { "name": "Sarah", "height": "6 feet", "age": 22 }
 1. "name", "height", "age"
 2. person["age"]
 3. person["hairColor"] = "black"
-4. person.update["hairColor"] = "brown"
+4. person.update("hairColor") = "brown"
+	 person["hairColor"] = "brown"
 5. del person["height"]
-6. if eyeColor not in person:
+6. if "eyeColor" not in person:
 	print("Missing Key")
 7. for i in person:
 	print(i, person[i])
@@ -58,11 +59,13 @@ An empty list should return `0`.
 
 ```python
 def countLongWords(words, minimumLength):
+	count = []
 	for i in words:
 		if len(words) == 0:
 			print("0")
-		else len(words[i]) >= minimumLength:
-			print(len(words[i]))
+		elif len(i) >= minimumLength:
+			count.append(i)
+	return len(count)
 
 countLongWords(["cat", "tiger", "elephant", "dog"], 5)
 # returns 2
@@ -78,8 +81,8 @@ Write a function called `removeRepeats(items)` that returns a new list containin
 ```python
 def removeRepeats(items):
 	slimList = []
-	for i in items:
-		if items[i] not in slimList:
+	for item in items:
+		if item not in slimList:
 		slimList.append(items[i])
 	print(slimList)
 
@@ -132,6 +135,7 @@ login = {"username":"sarah123", "password":"securepassword"}
 for attempts in range(3):
     if input(f"Enter password for {login["username"]}: ") == login["password"]:
         print("You may access your account")
+				break
     elif attempts == 2:
         print("You have tried too many times.")
     else:
@@ -184,7 +188,7 @@ def upperCamelCase(userinput):
         newstring = newstring + words[i][0].upper() + words[i][1:]
     return newstring
 
-upperCamelCase("fur pillows are hard to actually sleep on")
+print(upperCamelCase("fur pillows are hard to actually sleep on"))
 ```
 
 Expected Output
@@ -331,7 +335,7 @@ artists = [
 def artistsByYear(artists):
     byyearDict = {}
     for i, song in enumerate(artists):
-        if song["year"] not in byyearDict:
+        if str(song["year"]) not in byyearDict:
             byyearDict[str(song["year"])] = []
             byyearDict[str(song["year"])].append(song)
         else:
