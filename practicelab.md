@@ -189,6 +189,9 @@ def upperCamelCase(userinput):
         newstring = newstring + words[i][0].upper() + words[i][1:]
     return newstring
 
+def upperCamelCaseMethod(userinput)
+  print(userinput.strip().title().replace(" ", ""))
+
 print(upperCamelCase("fur pillows are hard to actually sleep on"))
 ```
 
