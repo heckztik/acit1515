@@ -41,7 +41,7 @@ person = { "name": "Sarah", "height": "6 feet", "age": 22 }
 1. "name", "height", "age"
 2. person["age"]
 3. person["hairColor"] = "black"
-4. person.update("hairColor") = "brown"
+4. person.update({"hairColor":"brown"})
 	 person["hairColor"] = "brown"
 5. del person["height"]
 6. if "eyeColor" not in person:
@@ -81,10 +81,11 @@ Write a function called `removeRepeats(items)` that returns a new list containin
 ```python
 def removeRepeats(items):
 	slimList = []
-	for item in items:
-		if item not in slimList:
-		slimList.append(items[i])
+	for i in range(len(items)):
+		if items[i] not in slimList:
+		    slimList.append(items[i])
 	print(slimList)
+
 
 removeRepeats(["apple", "banana", "apple", "pear", "banana"])
 # returns ["apple", "banana", "pear"]
