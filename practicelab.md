@@ -132,8 +132,9 @@ if auth == True:
 
 ```py
 login = {"username":"sarah123", "password":"securepassword"}
+maxattempts = 3
 
-for attempts in range(3):
+for attempts in range(maxattempts):
     if input(f"Enter password for {login["username"]}: ") == login["password"]:
         print("You may access your account")
 				break
@@ -190,7 +191,7 @@ def upperCamelCase(userinput):
     return newstring
 
 def upperCamelCaseMethod(userinput)
-  print(userinput.strip().title().replace(" ", ""))
+  print(userinput.title().replace(" ", ""))
 
 print(upperCamelCase("fur pillows are hard to actually sleep on"))
 ```
