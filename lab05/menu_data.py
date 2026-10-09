@@ -16,7 +16,7 @@ lunch,bento box a - chicken teriyaki,box combo,$8.59"""
 def structureCSV(csv_text):
     itemlist = csv_text.split("\n")
     meals = []
-    for i, value in enumerate(itemlist):
+    for value in itemlist:
         templist = value.split(",")
         meals.append({"mealtype":templist[0],"mealname":templist[1],"mealqty":templist[2],"price":templist[3]})
     return meals
@@ -40,7 +40,3 @@ def uniqueMealType(meals):
 print(structureCSV(csv_text))
 
 print(uniqueMealType(structureCSV(csv_text)))
-
-        
-
-
