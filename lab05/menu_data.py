@@ -30,13 +30,14 @@ def structureCSV(csv_text):
 #   {'mealtype': 'lunch', 'mealname': 'bento box a - chicken teriyaki', 'mealqty': 'box combo', 'price': '$8.59'}
 # ]
 
-def uniqueMealType(meals):
-    unique = []
-    for meal in meals:
-        if meal["mealtype"] not in unique:
-            unique.append(meal["mealtype"])
-    return unique
-    
-print(structureCSV(csv_text))
+def organizeMeals(meals):
+    menuDict = {}
+    for mealtype in meals:
+        if str(mealtype["mealtype"]) not in menuDict:
+            menuDict[str(mealtype["mealtype"])] = []
+            menuDict[str(mealtype["mealtype"])].append(mealtype)
+        else:
+            menuDict[str(mealtype["mealtype"])].append(mealtype)
+    return menuDict
 
-print(uniqueMealType(structureCSV(csv_text)))
+print(organizeMeals(structureCSV(csv_text)))
