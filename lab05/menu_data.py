@@ -59,7 +59,3 @@ def uniqueMeals(menuDict):
     for type in menuDict:
         uniqueMeals.append(type)
     return uniqueMeals
-
-
-
-print(uniqueMeals(organizeMeals(structureCSV(csv_text))))
