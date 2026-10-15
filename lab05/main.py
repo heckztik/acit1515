@@ -9,6 +9,6 @@ def main(datainput):
         print()
         print(f"* {mealtype.capitalize()} Items *")
         for i in range(len(menuDict[mealtype])):
-            print(f" {menuDict[mealtype][i]["price"]}  {menuDict[mealtype][i]["mealname"]}, {menuDict[mealtype][i]["mealqty"]}")
+            print(f" ${(str(float(menuDict[mealtype][i]["price"].replace("$", "")) * 1.8) + "00")[:(str(float(menuDict[mealtype][i]["price"].replace("$", "")) * 1.8) + "00").find(".") + 3]}  {menuDict[mealtype][i]["mealname"]}, {menuDict[mealtype][i]["mealqty"]}")
 
 main(csv_text)
