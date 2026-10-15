@@ -30,14 +30,36 @@ def structureCSV(csv_text):
 #   {'mealtype': 'lunch', 'mealname': 'bento box a - chicken teriyaki', 'mealqty': 'box combo', 'price': '$8.59'}
 # ]
 
+# copied from practicelab.md
+
 def organizeMeals(meals):
     menuDict = {}
     for mealtype in meals:
         if str(mealtype["mealtype"]) not in menuDict:
             menuDict[str(mealtype["mealtype"])] = []
-            menuDict[str(mealtype["mealtype"])].append(mealtype)
-        else:
-            menuDict[str(mealtype["mealtype"])].append(mealtype)
+        menuDict[str(mealtype["mealtype"])].append(mealtype)
     return menuDict
 
-print(organizeMeals(structureCSV(csv_text)))
+# This returns this list:
+# menuDict = [{
+#     'lunch': [
+#         {'mealtype': 'lunch', 'mealname': 'bento box b - sashimi', 'mealqty': 'box combo', 'price': '$9.59'}, 
+#         {'mealtype': 'lunch', 'mealname': 'bento box a - chicken teriyaki', 'mealqty': 'box combo', 'price': '$8.59'}
+#         ], 
+#     'dinner': [
+#         {'mealtype': 'dinner', 'mealname': 'vegetable sushi', 'mealqty': '6 rolls', 'price': '$3.50'}, 
+#         {'mealtype': 'dinner', 'mealname': 'tuna roll', 'mealqty': '3 rolls', 'price': '$4.50'}, 
+#         {'mealtype': 'dinner', 'mealname': 'roe', 'mealqty': '2 rolls', 'price': '$3.95'}
+#         ]
+#     }
+# ]
+
+def uniqueMeals(menuDict):
+    uniqueMeals = []
+    for type in menuDict:
+        uniqueMeals.append(type)
+    return uniqueMeals
+
+
+
+print(uniqueMeals(organizeMeals(structureCSV(csv_text))))
