@@ -132,6 +132,7 @@ def main(datainput):
     menuDict = organizeMeals(meals)
     uniqueMeals = uniqueMeals(menuDict)
     for mealtype in uniqueMeals:
+        print()
         print(f"* {mealtype.capitalize()} Items *")
         for i in range(len(menuDict[mealtype])):
             print(f" {menuDict[mealtype][i]["price"]}  {menuDict[mealtype][i]["mealname"]}, {menuDict[mealtype][i]["mealqty"]}")
