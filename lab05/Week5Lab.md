@@ -104,10 +104,39 @@ In the same directory as your `menu_data.py` file, create a file called `main.py
 from menu_data import csv_text
 
 # call your helper functions from in here
-def main():
-    print(csv_text)
 
-main()
+def structureCSV(csv_text):
+    itemlist = csv_text.split("\n")
+    meals = []
+    for value in itemlist:
+        templist = value.split(",")
+        meals.append({"mealtype":templist[0],"mealname":templist[1],"mealqty":templist[2],"price":templist[3]})
+    return meals
+
+def organizeMeals(meals):
+    menuDict = {}
+    for mealtype in meals:
+        if str(mealtype["mealtype"]) not in menuDict:
+            menuDict[str(mealtype["mealtype"])] = []
+        menuDict[str(mealtype["mealtype"])].append(mealtype)
+    return menuDict
+
+def uniqueMeals(menuDict):
+    uniqueMeals = []
+    for type in menuDict:
+        uniqueMeals.append(type)
+    return uniqueMeals
+
+def main(datainput):
+    meals = structureCSV(datainput)
+    menuDict = organizeMeals(meals)
+    uniqueMeals = uniqueMeals(menuDict)
+    for mealtype in uniqueMeals:
+        print(f"* {mealtype.capitalize()} Items *")
+        for i in range(len(menuDict[mealtype])):
+            print(f" {menuDict[mealtype][i]["price"]}  {menuDict[mealtype][i]["mealname"]}, {menuDict[mealtype][i]["mealqty"]}")
+
+main(csv_text)
 
 ```
 
