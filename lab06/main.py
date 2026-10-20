@@ -37,11 +37,13 @@ def mainLoop():
     userinput = input("Enter your choice: ")
     if userinput == "1":
         add_song()
-    if userinput == "2":
+    elif userinput == "2":
         record_listen()
-    if userinput == "3":
+    elif userinput == "3":
         generate_wrapped()
-    if userinput == "4":
+    elif userinput == "print":
+        print(songs)
+    elif userinput == "4":
         exit()
     else:
         print(f"{userinput} is an invalid input. Please try again.")
