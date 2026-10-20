@@ -38,13 +38,13 @@ def mainLoop():
     if userinput == "1":
         add_song()
     elif userinput == "2":
-        record_listen()
+        record_listen(None)
     elif userinput == "3":
         generate_wrapped()
     elif userinput == "print":
         print(songs)
     elif userinput == "4":
-        exit()
+        exit(f"Exiting program...")
     else:
         print(f"{userinput} is an invalid input. Please try again.")
 
