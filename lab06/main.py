@@ -1,28 +1,5 @@
-from spotify import add_song, record_listen, generate_wrapped
 
-
-# Temp song data so I don't need to re-record everytime I run the loop.
-# !!! MAKE SURE TO INIT LIST IN FINAL AND NOT USE OLD SONG DATA !!!
-songs = [
-    {
-        "title": "Blinding Lights",
-        "artist": "The Weeknd",
-        "duration": 200,
-        "plays": 5
-    },
-    {
-        "title": "Numb",
-        "artist": "Linkin Park",
-        "duration": 187,
-        "plays": 8
-    },
-    {
-        "title": "Shape of You",
-        "artist": "Ed Sheeran",
-        "duration": 234,
-        "plays": 3
-    }
-]
+import spotify as s
 
 mainmenu = """====== SPOTIFY WRAPPED ======
 
@@ -34,20 +11,21 @@ mainmenu = """====== SPOTIFY WRAPPED ======
 
 def mainLoop():
     print(mainmenu)
-    userinput = input("Enter your choice: ")
-    if userinput == "1":
-        add_song()
-    elif userinput == "2":
-        record_listen(None)
-    elif userinput == "3":
-        generate_wrapped()
-    elif userinput == "print":
-        print(songs)
-    elif userinput == "4":
+    userinput = input("Enter your choice: ").strip().lower()
+    if (userinput == "1") or userinput.startswith("add"):
+        s.add_song()
+    elif (userinput == "2") or userinput.startswith("record"):
+        s.record_listen(None)
+    elif (userinput == "3") or userinput.startswith(("generate", "wrap")):
+        s.generate_wrapped()
+    elif userinput == "!print":
+        s.printsongs()
+    elif (userinput == "4") or userinput.startswith(("quit", "exit")):
         exit(f"Exiting program...")
+    elif userinput == "!purge":
+        s.purge()
     else:
         print(f"{userinput} is an invalid input. Please try again.")
 
 while True:
-    # songs = [] 
     mainLoop()

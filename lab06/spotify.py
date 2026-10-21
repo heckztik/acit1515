@@ -1,23 +1,4 @@
-songs = [
-    {
-        "title": "Blinding Lights",
-        "artist": "The Weeknd",
-        "duration": 200,
-        "plays": 5
-    },
-    {
-        "title": "Numb",
-        "artist": "Linkin Park",
-        "duration": 187,
-        "plays": 8
-    },
-    {
-        "title": "Shape of You",
-        "artist": "Ed Sheeran",
-        "duration": 234,
-        "plays": 3
-    }
-]
+from songdata import songs
 
 lowercase_title_words = ["a", "an", "the", "and", "but", "or", "nor", "for", "yet", "so", "at", "by", "in", "of", "on", "to", "up", "as", "via"]
 
@@ -111,8 +92,16 @@ def add_song_input():
     songinput = input("Enter song title: ")
     songinputtitle = smartTitle(songinput)
     artistinput = input("Enter artist: ").title()
-    minuteinput = int(input("Enter duration (minutes): "))
-    secondinput = int(input("Enter duration (seconds): "))
+    validinput = False
+    while not validinput:
+        minuteinput = input("Enter duration (minutes): ").strip()
+        secondinput = input("Enter duration (seconds): ").strip()
+        if minuteinput.isdecimal() and secondinput.isdecimal():
+            validinput = True
+            minuteinput = int(minuteinput)
+            secondinput = int(secondinput)
+        else:
+            print(f'"{minuteinput}" or "{secondinput}" is not a valid input. Please only input intergers.')
     duration = (minuteinput * 60) + secondinput
     lvs = lvsCheck(songinputtitle)
     
@@ -124,22 +113,21 @@ def add_song_input():
             yn = input(f"Did you mean {songinputtitle}? (y/n): ").strip().lower()
             if yn == "y":
                 return songinputtitle, artistinput, duration
-            else:
-                return songinput, artistinput, duration
+    return songinput, artistinput, duration
 
     print(songinput, songinputtitle, artistinput, duration)
 
 
 def add_song():
     inputs = add_song_input()
+    print(inputs)
     song = inputs[0]
     artist = inputs[1]
     duration = inputs[2]
     oldliblen = len(songs)
     if not insongs(song):
-        print(f"Adding {song}, {artist}, {duration}")
+        print(f"Adding {song}, {artist}, {duration} at index {len(songs)}")
         songs.append({"title": song, "artist": artist, "duration": duration, "plays": 0})
-        print(songs[len(songs) - 1])
     else:
         print(f"{song} is already in the library. Did you want to record a listen?")
         if input(f"(y/n): ").lower() == "y":
@@ -151,39 +139,67 @@ def add_song():
 
 def insongs(query):
     for song in songs:
-        if query in songs["title"]:
+        if query == song["title"]:
             return True
-        else:
-            return False
+    return False
+
+def incrementPlayCount(songtitle):
+    increment = False
+    for song in songs:
+        if song["title"] == songtitle:
+            song["plays"] += 1
+            print(f"{song["title"]}'s playcount is now {song["plays"]}")
+            increment = True
+    if not increment:
+        print(f"Error, {songtitle}'s playcount was not incremented properly.")
 
 def record_listen(songtitle):
     if songtitle == None:
-        songtitle = input(f"Input title of song: ")
-    if not insongs(songtitle):
-        print(f"{songtitle} not in library. Please record the song.")
+        songtitle = smartTitle(input(f"Input title of song: "))
+        lvs = lvsCheck(songtitle)
+    if (not insongs(songtitle)) and insongs(lvs):
+        if input(f"Did you mean {lvs}? (y/n): ").lower().startswith("y"):
+            incrementPlayCount(lvs)
+    elif (not insongs(songtitle)) and (not insongs(lvs)):
+        print(f"Did not find song in library. Please try again")
         return False
-    for i, song in enumerate(songs):
-        if songtitle == song["title"]:
-            song["plays"] += 1
-            index = i
-            recorded = True
-    if recorded:
-        print(f"{song[index]["title"]} now has {song[index]["plays"]} plays.")
     else:
-        print(f"Error: did not record song play. Did not find song in library.")
+        incrementPlayCount(songtitle)
+        return True
+
+def playcount(list):
+    return list["plays"]
+
+def printsongs():
+    print(songs)
+
+def purge():
+    songs = []
 
 def generate_wrapped():
-    print(f"""
+    if len(songs) == 0:
+        print(f"No songs to wrap. Please enter some songs first.")
+    else:
+        plays = 0
+        for song in songs:
+            plays += song["plays"]
+        listentime = 0
+        for song in songs:
+            listentime += song["plays"] * song["duration"]
+        listentime = listentime // 60
+        templist = songs.copy()
+        templist.sort(reverse=True, key=playcount)
+        mostplayed = templist[0]
+
+        print(f"""
 ========== YOUR SPOTIFY WRAPPED ==========
 
 Total Songs: {len(songs)}
-Total Plays: {# sumof songs["plays"]}
-Total Listening Time: 52 minutes
+Total Plays: {plays}
+Total Listening Time: {listentime} minutes
 
 Your Most Played Song:
-Numb - Linkin Park (8 plays)
+{mostplayed["title"]} - {mostplayed["artist"]} ({mostplayed["plays"]} plays)
 
 ==========================================
 """)
-    pass
-    
