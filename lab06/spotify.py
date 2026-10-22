@@ -103,14 +103,17 @@ def add_song_input():
         else:
             print(f'"{minuteinput}" or "{secondinput}" is not a valid input. Please only input intergers.')
     duration = (minuteinput * 60) + secondinput
-    lvs = lvsCheck(songinputtitle)
+    if len(songs) != 0:
+        lvs = lvsCheck(songinputtitle)
+    else:
+        lvs = songinputtitle
     
     if lvs != songinput:
-        yn = input(f"Did you mean {lvs}? (y/n): ").strip().lower()
+        yn = input(f"Did you mean {songinputtitle}? (y/n): ").strip().lower()
         if yn == "y":
             return lvs, artistinput, duration
-        else:
-            yn = input(f"Did you mean {songinputtitle}? (y/n): ").strip().lower()
+        elif len(songs) != 0:
+            yn = input(f"Did you mean {lvs}? (y/n): ").strip().lower()
             if yn == "y":
                 return songinputtitle, artistinput, duration
     return songinput, artistinput, duration
@@ -156,7 +159,10 @@ def incrementPlayCount(songtitle):
 def record_listen(songtitle):
     if songtitle == None:
         songtitle = smartTitle(input(f"Input title of song: "))
-        lvs = lvsCheck(songtitle)
+        if len(songs) != 0:
+            lvs = lvsCheck(songtitle)
+        else:
+            lvs = songtitle
     if (not insongs(songtitle)) and insongs(lvs):
         if input(f"Did you mean {lvs}? (y/n): ").lower().startswith("y"):
             incrementPlayCount(lvs)
