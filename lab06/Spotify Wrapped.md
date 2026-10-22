@@ -148,3 +148,6 @@ main()
 When you are done, push your code to your github repository. 
 
 </aside>
+
+input typecase agnostic.
+Did you mean "x" function (levenshtein distance)

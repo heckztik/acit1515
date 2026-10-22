@@ -174,7 +174,7 @@ def printsongs():
     print(songs)
 
 def purge():
-    songs = []
+    songs.clear()
 
 def generate_wrapped():
     if len(songs) == 0:

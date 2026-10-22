@@ -1,0 +1,39 @@
+===== levenshtein() =====
+PASS   cat -> cart (one insertion)
+PASS   cart -> cat (one deletion)
+PASS   cat -> cut (one substitution)
+PASS   same -> same (identical)
+PASS   hlep -> help (swapped letters)
+PASS   book -> back
+PASS   kitten -> sitting (classic example)
+PASS   abc -> xyz (nothing in common)
+PASS   empty -> abc (base case: first row)
+PASS   abc -> empty (base case: first column)
+PASS   empty -> empty
+PASS   xabc -> abc (extra letter at the front)
+PASS   abc -> xyzabc (missing letters at the front)
+PASS   Numb -> numb (case counts as a change)
+
+===== lvsCheck() =====
+PASS   exact: 'Numb'
+PASS   exact, wrong case: 'numb'
+PASS   exact, extra spaces/caps: '  HELLO  '
+PASS   exact, multi-word: 'shape of you'
+PASS   typo (dist 1): 'Thriler'
+PASS   typo (dist 1): 'Yelow'
+PASS   typo (dist 1): 'toxik'
+PASS   typo (dist 1): 'Africaa'
+PASS   typo (dist 1): 'Shape of Yu'
+PASS   typo (dist 1): 'Numb Encor'
+PASS   swap (dist 2): 'Nmub'
+PASS   swap (dist 2): 'hlep'
+PASS   swap (dist 2): 'Bohemain Rhapsody'
+PASS   length +2 (dist 3): 'Hey Jood'
+PASS   length -1 (dist 3): 'Blinding Lites'
+PASS   no match: 'zzzzzzzz'
+PASS   no match (too short): 'Bohemian'
+
+===== info only (no pass/fail) =====
+tie: 'helo' -> 'Hello'  (Hello and Help are both distance 1)
+
+===== 31 passed, 0 failed =====
