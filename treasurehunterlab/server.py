@@ -5,13 +5,17 @@ from urllib.parse import parse_qs, urlparse
 import random
 
 player = [0, 0]
-treasure = [3, 2]
+treasure = [random.randint(0, 4), random.randint(0, 4)]
 moves = 0
 
 
 def move_player(direction):
     global player, moves
-    oldpos = player
+    oldpos = player.copy()
+
+    if found_treasure():
+        reset_game()
+        player = oldpos.copy()
 
     if direction == "up" and player[1] > 0:
         player[1] += -1
@@ -48,10 +52,12 @@ def is_game_over():
 
 
 def reset_game():
-    global player, moves
-
-    player = [0, 0]
-    treasure = [random.randint(0, 4), random.randint(0, 4)]
+    global player, moves, treasure
+    for i in range(5):
+        player = [random.randint(0, 4), random.randint(0, 4)]
+        treasure = [random.randint(0, 4), random.randint(0, 4)]
+        if not found_treasure():
+            break
     moves = 0
 
 
