@@ -2,6 +2,7 @@ import json
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
+import random
 
 player = [0, 0]
 treasure = [3, 2]
@@ -49,7 +50,8 @@ def is_game_over():
 def reset_game():
     global player, moves
 
-    player = [0, 1]
+    player = [0, 0]
+    treasure = [random.randint(0, 4), random.randint(0, 4)]
     moves = 0
 
 
