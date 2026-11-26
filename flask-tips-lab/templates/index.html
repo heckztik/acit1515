@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Coding Tips</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.1.1/css/pico.min.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Coding Tips</h1>
+
+        <form method="post" action="/tips">
+            <label for="text">Your tip:</label>
+            <input id="text" name="text" type="text">
+            <button type="submit">Add Tip</button>
+        </form>
+
+        <h2>Tips</h2>
+
+        {% for tip in tips %}
+            <article>
+                <p>{{ tip.text }}</p>
+                <p>Likes: {{ tip.likes }}</p>
+
+                <div class="grid">
+                    <form method="post" action="/tips/{{ tip.id }}/like">
+                        <button type="submit">Like</button>
+                    </form>
+
+                    <form method="post" action="/tips/{{ tip.id }}/dislike">
+                        <button type="submit" class="secondary">Dislike</button>
+                    </form>
+
+                    <form method="post" action="/tips/{{ tip.id }}/delete">
+                        <button type="submit" class="contrast">Delete</button>
+                    </form>
+                </div>
+            </article>
+        {% endfor %}
+    </main>
+</body>
+</html>
